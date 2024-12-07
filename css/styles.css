@@ -88,7 +88,13 @@ html {
     text-decoration: none;
     color: #000;
   }
-  
+  /* Highlight the active navbar link */
+.menu__link.active-nav {
+  background-color: #cc1;
+  color: #000;
+  border-radius: 5px;
+  transition: 0.3s;
+}
   .navbarclick {
     background: #333;
     color: #fff;
@@ -260,4 +266,43 @@ html {
   #myBtn:hover {
     background-color: #555; /* Add a dark-grey background on hover */
   }
+  /* Hide navigation by default for small screens */
+.navbar__menu {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-open {
+  display: flex; /* Show navbar when toggled */
+}
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 2em;
+  color: #fff;
+  cursor: pointer;
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  z-index: 1000;
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
   
+}
+
+@media only screen and (min-width: 768px) {
+  .navbar__menu {
+    display:block;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+}
+
