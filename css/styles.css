@@ -284,17 +284,44 @@ html {
   font-size: 2em;
   color: #fff;
   cursor: pointer;
-  position: fixed;
+  position:fixed;
   top: 1em;
   right: 1em;
   z-index: 1000;
 }
 
+/* Responsive Styles */
 @media only screen and (max-width: 768px) {
   .nav-toggle {
+    display: block; /* Show toggle button on small screens */
+  }
+
+  .navbar__menu {
+    position: absolute;
+    background-color: #fff; /* Background color for small screens */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for small screens */
+    width: 100%; /* Make the menu span the full screen width */
+    
+  }
+
+  .navbar__menu ul {
+    text-align: center; /* Left-align menu items on smaller screens */
+  }
+
+  .navbar__menu li {
+    padding: 0.5em 1.5em; /* Add spacing for better touch accessibility */
     display: block;
   }
-  
+
+  .navbar__menu .menu__link {
+    font-size: 1.1em; /* Slightly larger font size for better readability on phones */
+  }
+
+  .nav-toggle {
+   
+    color: #000000;
+ 
+  }
 }
 
 @media only screen and (min-width: 768px) {

@@ -25,48 +25,42 @@ function generateNavbar() {
 }
 generateNavbar();
 
-// Add 'active' class to the section in the viewport
-function addActiveClass(section) {
-  section.classList.add('your-active-class');
-}
-
-// Remove 'active' class from the section
-function removeActiveClass(section) {
-  section.classList.remove('your-active-class');
-}
-
-// Highlight the section currently in the viewport
-function makeActiveSection() {
+// Add 'active' class to section and corresponding navbar link
+function setActiveState() {
   sectionsElements.forEach((section) => {
     const elementOffset = section.getBoundingClientRect();
+    const navbarLink = document.querySelector(`.menu__link[href="#${section.id}"]`);
+
     if (elementOffset.top <= 150 && elementOffset.bottom >= 150) {
-      addActiveClass(section);
+      section.classList.add('your-active-class');
+      navbarLink.classList.add('active-nav');
     } else {
-      removeActiveClass(section);
+      section.classList.remove('your-active-class');
+      navbarLink.classList.remove('active-nav');
     }
   });
 }
-document.addEventListener('scroll', makeActiveSection);
+document.addEventListener('scroll', setActiveState);
 
 // Show or hide the "Back to Top" button
-function scrollFunction() {
+function toggleBackToTopButton() {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
     mybutton.style.display = 'block';
   } else {
     mybutton.style.display = 'none';
   }
 }
-window.onscroll = scrollFunction;
+window.onscroll = toggleBackToTopButton;
 
 // Scroll to the top when the button is clicked
-function topFunction() {
+function scrollToTop() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
 }
-mybutton.addEventListener('click', topFunction);
+mybutton.addEventListener('click', scrollToTop);
 
 // Smooth scroll to section on navigation click
-let navbarItems = document.querySelectorAll('#navbar__list li a');
+const navbarItems = document.querySelectorAll('#navbar__list li a');
 
 navbarItems.forEach((link) => {
   link.addEventListener('click', (event) => {
@@ -83,3 +77,6 @@ navbarItems.forEach((link) => {
 navToggle.addEventListener('click', () => {
   navbarMenu.classList.toggle('menu-open');
 });
+
+// Initial Call to Highlight Active State
+setActiveState();
